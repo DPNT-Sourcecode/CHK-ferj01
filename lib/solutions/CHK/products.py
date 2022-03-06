@@ -177,15 +177,4 @@ PRODUCT_MAP = {
     "Z": ProductZ(),
 }
 
-class ItemGroup:
-    """Item group"""
-
-    num = 3
-    combination = ["S", "T", "X", "Y", "Z"]
-    price = 5
-
-    def add_to_group(self, item, count):
-        """Add to the group"""
-        if item not in self.combination:
-            return
-
+        

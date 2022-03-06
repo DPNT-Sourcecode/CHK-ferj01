@@ -85,7 +85,7 @@ class ProductE(Product):
 class ProductF(Product):
     """F"""
     item_price = 10
-    freebies = {2: "F"}
+    offers = {3: 20}
 
 PRODUCT_MAP = {
     "A": ProductA(),
@@ -130,12 +130,6 @@ def _check_for_invalid_item(items):
         if k not in list(PRODUCT_MAP.keys()):
             raise InvalidItem()
 
-
-assert checkout("F") == 10
-assert checkout("FF") == 20
-assert checkout("FFF") == 20
-assert checkout("FFFF") == 30
-
 assert checkout("A") == 50
 assert checkout("AA") == 100
 assert checkout("AAA") == 130
@@ -168,7 +162,13 @@ assert checkout("EE") == 80
 assert checkout("EEE") == 120
 assert checkout("EEEE") == 160
 
+assert checkout("F") == 10
+assert checkout("FF") == 20
+assert checkout("FFF") == 20
+assert checkout("FFFF") == 30
+
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
+
 

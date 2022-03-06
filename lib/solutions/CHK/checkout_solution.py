@@ -166,9 +166,12 @@ assert checkout("F") == 10
 assert checkout("FF") == 20
 assert checkout("FFF") == 20
 assert checkout("FFFF") == 30
+assert checkout("FFFFF") == 40
+assert checkout("FFFFFF") == 40
 
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
+
 
 

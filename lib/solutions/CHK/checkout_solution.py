@@ -7,10 +7,9 @@ class InvalidItem(Exception):
 
 class Product:
     """A shopping item"""
-
-    item_price = 50
-    offer_num = 3
-    offer_price = 130
+    item_price = 0
+    offer_num = 0
+    offer_price = 0
 
     def get_price(self, count):
         """Get the price, including any offers"""
@@ -21,13 +20,33 @@ class Product:
 
     def _calculate_offers(self, count):
         """Calculate the offers"""
-        mod = int(count / self.offer_num)
-        print(mod)
+        in_offer = int(count / self.offer_num)
+        out_offer = count % self.offer_num
+        return (in_offer * self.offer_price) + (out_offer * self.item_price)
 
-        rem = count % self.offer_num
-        print(rem)
+class ProductA(Product):
+    """A"""
+    item_price = 50
+    offer_num = 3
+    offer_price = 130
 
-        return (mod * self.offer_price) + (rem * self.item_price)
+class ProductB(Product):
+    """B"""
+    item_price = 30
+    offer_num = 2
+    offer_price = 45
+
+class ProductC(Product):
+    """C"""
+    item_price = 20
+    offer_num = 0
+    offer_price = 0
+
+class ProductD(Product):
+    """D"""
+    item_price = 15
+    offer_num = 0
+    offer_price = 0
 
         
 
@@ -44,7 +63,6 @@ def checkout(skus):
         price = product.get_price(count)
         total += price
 
-    print(total)
     return total
 
 def _check_for_invalid_item(items):
@@ -56,9 +74,8 @@ def _check_for_invalid_item(items):
 
 
 assert checkout("A") == 50
-
-
-
-
-
+assert checkout("AA") == 100
+assert checkout("AAA") == 130
+assert checkout("AAAA") == 180
+assert checkout("AAAAAA") == 260
 

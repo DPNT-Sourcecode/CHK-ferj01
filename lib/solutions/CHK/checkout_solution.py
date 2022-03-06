@@ -59,36 +59,88 @@ class Product:
         return total + (remaining * self.item_price)
 
 class ProductA(Product):
-    """A"""
     item_price = 50
     offers = {3: 130, 5:200}
 
 class ProductB(Product):
-    """B"""
     item_price = 30
     offers = {2: 45}
 
 class ProductC(Product):
-    """C"""
     item_price = 20
 
 class ProductD(Product):
-    """D"""
     item_price = 15
 
 class ProductE(Product):
-    """E"""
     item_price = 40
     freebies = {2: "B"}
 
 class ProductF(Product):
-    """F"""
     item_price = 10
     offers = {3: 20}
 
 class ProductG(Product):
-    """G"""
-    item_price = "TODO"
+    item_price = 20
+
+class ProductH(Product):
+    item_price = 10
+
+class ProductI(Product):
+    item_price = 35
+
+class ProductJ(Product):
+    item_price = 60
+
+class ProductK(Product):
+    item_price = 80
+    offers = {2: 150}
+
+class ProductL(Product):
+    item_price = 90
+
+class ProductM(Product):
+    item_price = 15
+
+class ProductN(Product):
+    item_price = 40
+    freebies = {3: "M"}
+
+class ProductO(Product):
+    item_price = 10
+
+class ProductP(Product):
+    item_price = 50
+
+class ProductQ(Product):
+    item_price = 30
+
+class ProductR(Product):
+    item_price = 50
+
+class ProductS(Product):
+    item_price = 30
+
+class ProductT(Product):
+    item_price = 20
+
+class ProductU(Product):
+    item_price = 40
+
+class ProductV(Product):
+    item_price = 50
+
+class ProductW(Product):
+    item_price = 20
+
+class ProductX(Product):
+    item_price = 90
+
+class ProductY(Product):
+    item_price = 10
+
+class ProductZ(Product):
+    item_price = 50
 
 PRODUCT_MAP = {
     "A": ProductA(),
@@ -195,8 +247,3 @@ assert checkout("FFFFFF") == 40
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
-
-
-
-
-

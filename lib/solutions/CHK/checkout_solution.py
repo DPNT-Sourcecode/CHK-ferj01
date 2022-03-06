@@ -21,8 +21,12 @@ class Product:
 
     def _calculate_offers(self, count):
         """Calculate the offers"""
-        mod = count / self.offer_num
+        mod = int(count / self.offer_num)
+        print(mod)
+
         rem = count % self.offer_num
+        print(rem)
+
         return (mod * self.offer_price) + (rem * self.item_price)
 
         
@@ -34,7 +38,14 @@ def checkout(skus):
     except InvalidItem:
         return -1
 
-    return 0
+    total = 0
+    for k, count in items.items():
+        product = Product()
+        price = product.get_price(count)
+        total += price
+
+    print(total)
+    return total
 
 def _check_for_invalid_item(items):
     """Checking for any invalid items"""
@@ -44,7 +55,8 @@ def _check_for_invalid_item(items):
 
 
 
-assert checkout("ABACDDD") == 0
+assert checkout("A") == 50
+
 
 
 

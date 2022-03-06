@@ -7,11 +7,12 @@ class InvalidItem(Exception):
 
 class Product:
     """A shopping item"""
+    total = 0
     item_price = 0
     offers = {}
     freebies = {}
 
-    def get_price(self, count):
+    def calculate_base_price(self, count):
         """Get the price, including any offers"""
         price = count * self.item_price
         if self.offers:
@@ -20,8 +21,12 @@ class Product:
 
     def get_freebies(self, count):
         """Get any freebies on offer"""
+        free = {}
         for num, item in self.freebies.items():
             product_count = int(count / num)
+            free[item] = product_count
+
+        return free
 
     def _calculate_offers(self, count):
         """Calculate the offers"""
@@ -39,7 +44,7 @@ class Product:
             total += (in_offer * self.offers[offer_num])
 
 
-        return total + (remaining * self.item_price)
+        self.total = total + (remaining * self.item_price)
 
 class ProductA(Product):
     """A"""
@@ -81,7 +86,8 @@ def checkout(skus):
     total = 0
     for k, count in items.items():
         product = PRODUCT_MAP[k]
-        total += product.get_price(count)
+        product.calculate_base_price(count)
+        total += product.total
 
     return total
 
@@ -117,6 +123,7 @@ assert checkout("DDD") == 45
 assert checkout("DDDD") == 60
 
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
+
 
 
 

@@ -1,6 +1,7 @@
 class Product:
     """A shopping item"""
 
+    id = None
     item_price = 0
     offers = {}
     freebies = {}
@@ -137,10 +138,12 @@ class ProductR(Product):
 
 
 class ProductS(Product):
+    id = "S"
     item_price = 20
 
 
 class ProductT(Product):
+    id = "T"
     item_price = 20
 
 
@@ -159,14 +162,17 @@ class ProductW(Product):
 
 
 class ProductX(Product):
+    id = "Z"
     item_price = 17
 
 
 class ProductY(Product):
+    id = "Y"
     item_price = 20
 
 
 class ProductZ(Product):
+    id = "Z"
     item_price = 21
 
 

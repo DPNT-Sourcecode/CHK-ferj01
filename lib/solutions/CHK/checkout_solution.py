@@ -32,14 +32,14 @@ def _get_freebies(items):
         product = PRODUCT_MAP[k]
         total_freebies.append(product.get_freebies(count))
 
-    groups = _get_groups(items)
-    for group in groups:
-        for product in group:
-            print(product)
-
     freebies = {}
     for free in total_freebies:
         freebies = dict(Counter(freebies) + Counter(free))
+
+    groups = _get_groups(items)
+    for group in groups:
+        for product in group:
+            print(product.id)
 
     return freebies, groups
 
@@ -61,7 +61,7 @@ def _get_groups(items):
     # Sort by price (highest first for best deal)
     grouped.sort(key=lambda x: x.item_price, reverse=True)
     groups_chunks = [grouped[x : x + 3] for x in range(0, len(grouped), 3)]
-    return [c for c in groups_chunks if len(c) == 3]
+    within_deal = [c for c in groups_chunks if len(c) == 3]
 
 
 assert checkout("STXYZ") == 50
@@ -128,6 +128,7 @@ assert checkout("VVV") == 130
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
+
 
 
 

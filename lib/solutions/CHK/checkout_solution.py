@@ -98,15 +98,16 @@ def checkout(skus):
     except InvalidItem:
         return -1
 
+    total_freebies = []
     for k, count in items.items():
         product = PRODUCT_MAP[k]
-        freebies = product.get_freebies(count)
-        print(freebies)
+        total_freebies.append(product.get_freebies(count))
+    print(total_freebies)
 
     total = 0
     for k, count in items.items():
         product = PRODUCT_MAP[k]
-        total += product.calculate_price(count)
+        total += product.calculate_price(count, freebies.get(k, 0))
 
     return total
 
@@ -142,6 +143,7 @@ assert checkout("BEE") == 40
 # assert checkout("DDDD") == 60
 
 # assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
+
 
 
 

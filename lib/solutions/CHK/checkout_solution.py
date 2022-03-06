@@ -257,7 +257,21 @@ assert checkout("KK") == 150
 
 assert checkout("MNNN") == 120
 
+assert checkout("PPPPP") == 200
+assert checkout("PPPPPPPPPP") == 400
+
+assert checkout("QQQ") == 80
+
+assert checkout("QRRR") == 150
+assert checkout("QQQRRR") == 150 + 60
+
+assert checkout("UUUU") == 120
+
+assert checkout("VV") == 90
+assert checkout("VVV") == 130
+
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
+
 

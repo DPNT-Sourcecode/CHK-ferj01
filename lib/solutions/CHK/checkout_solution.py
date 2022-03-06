@@ -86,6 +86,10 @@ class ProductF(Product):
     item_price = 10
     offers = {3: 20}
 
+class ProductG(Product):
+    """G"""
+    item_price = "TODO"
+
 PRODUCT_MAP = {
     "A": ProductA(),
     "B": ProductB(),
@@ -93,6 +97,26 @@ PRODUCT_MAP = {
     "D": ProductD(),
     "E": ProductE(),
     "F": ProductF(),
+    "G": ProductG(),
+    "H": ProductH(),
+    "I": ProductI(),
+    "J": ProductJ(),
+    "K": ProductK(),
+    "L": ProductL(),
+    "M": ProductM(),
+    "N": ProductN(),
+    "O": ProductO(),
+    "P": ProductP(),
+    "Q": ProductQ(),
+    "R": ProductR(),
+    "S": ProductS(),
+    "T": ProductT(),
+    "U": ProductU(),
+    "V": ProductV(),
+    "W": ProductW(),
+    "X": ProductX(),
+    "Y": ProductY(),
+    "Z": ProductZ(),
 }
 
 
@@ -171,6 +195,7 @@ assert checkout("FFFFFF") == 40
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
+
 
 
 

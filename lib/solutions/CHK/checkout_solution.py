@@ -5,10 +5,22 @@ from collections import Counter
 class InvalidItem(Exception):
     """Invalid item"""
 
+class Product:
+    """A shopping item"""
+
+    item_price = 50
+    offer_num = 3
+
+    def __init__(self, count) -> None:
+        self.count = count
+
+    def get_price(self):
+        """Get the price, including any offers"""
+        price = self.count * self.item_price
+        
+
 def checkout(skus):
     items = Counter([i for i in skus])
-
-
     try:
         _check_for_invalid_item(items)
     except InvalidItem:
@@ -24,7 +36,8 @@ def _check_for_invalid_item(items):
 
 
 
-print(checkout("ABACDDD"))
+assert checkout("ABACDDD") == 0
+
 
 
 

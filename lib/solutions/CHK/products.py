@@ -117,7 +117,7 @@ class ProductR(Product):
     freebies = {3: "Q"}
 
 class ProductS(Product):
-    item_price = 30
+    item_price = 20
 
 class ProductT(Product):
     item_price = 20
@@ -134,13 +134,13 @@ class ProductW(Product):
     item_price = 20
 
 class ProductX(Product):
-    item_price = 90
+    item_price = 17
 
 class ProductY(Product):
-    item_price = 10
+    item_price = 20
 
 class ProductZ(Product):
-    item_price = 50
+    item_price = 21
 
 PRODUCT_MAP = {
     "A": ProductA(),

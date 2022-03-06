@@ -52,6 +52,7 @@ def _get_groups(items):
         if k in ["S", "T", "X", "Y", "Z"]:
             grouped.extend([PRODUCT_MAP[k] for _ in range(count)])
 
+    grouped.sort(key=lambda x: x.item_price, reverse=True)
     print(grouped)
 
 
@@ -119,4 +120,5 @@ assert checkout("VVV") == 130
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
+
 

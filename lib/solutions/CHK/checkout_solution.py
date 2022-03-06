@@ -16,6 +16,7 @@ def checkout(skus):
         return -1
 
     freebies = _get_freebies(items)
+    groups = _get_groups(items)
     total = 0
     for k, count in items.items():
         product = PRODUCT_MAP[k]
@@ -49,10 +50,12 @@ def _get_groups(items):
     grouped = []
     for k, count in items.items():
         if k in ["S", "T", "X", "Y", "Z"]:
-            grouped.extend(k * count)
+            grouped.extend([PRODUCT_MAP[k] for _ in range(count)])
 
     print(grouped)
 
+
+assert checkout("STXYZ") == 50
 
 assert checkout("A") == 50
 assert checkout("AA") == 100
@@ -116,3 +119,4 @@ assert checkout("VVV") == 130
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
+

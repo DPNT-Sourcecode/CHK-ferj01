@@ -59,20 +59,22 @@ class ProductB(Product):
 class ProductC(Product):
     """C"""
     item_price = 20
-    offer_num = 0
-    offer_price = 0
 
 class ProductD(Product):
     """D"""
     item_price = 15
-    offer_num = 0
-    offer_price = 0
+
+class ProductE(Product):
+    """E"""
+    item_price = 40
+    freebies = {2: "B"}
 
 PRODUCT_MAP = {
     "A": ProductA(),
     "B": ProductB(),
     "C": ProductC(),
     "D": ProductD(),
+    "E": ProductE(),
 }
 
 
@@ -99,10 +101,10 @@ def checkout(skus):
 def _check_for_invalid_item(items):
     """Checking for any invalid items"""
     for k in items.keys():
-        if k not in ["A", "B", "C", "D"]:
+        if k not in list(PRODUCT_MAP.keys()):
             raise InvalidItem()
 
-assert checkout("BEE") == 50
+assert checkout("BEE") == 40
 
 # assert checkout("A") == 50
 # assert checkout("AA") == 100
@@ -128,3 +130,4 @@ assert checkout("BEE") == 50
 # assert checkout("DDDD") == 60
 
 # assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
+

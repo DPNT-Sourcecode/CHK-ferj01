@@ -15,12 +15,12 @@ def checkout(skus):
     except InvalidItem:
         return -1
 
-    freebies = _get_freebies(items)
-    groups = _get_groups(items)
+    freebies, groups = _get_freebies(items)
     total = 0
     for k, count in items.items():
         product = PRODUCT_MAP[k]
         total += product.calculate_price(count, freebies.get(k, 0))
+    total += len(groups) * 45
 
     return total
 
@@ -32,10 +32,16 @@ def _get_freebies(items):
         product = PRODUCT_MAP[k]
         total_freebies.append(product.get_freebies(count))
 
+    groups = _get_groups(items)
+    for group in groups:
+        for product in group:
+            print(product)
+
     freebies = {}
     for free in total_freebies:
         freebies = dict(Counter(freebies) + Counter(free))
-    return freebies
+
+    return freebies, groups
 
 
 def _check_for_invalid_item(items):
@@ -122,6 +128,7 @@ assert checkout("VVV") == 130
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
+
 
 
 

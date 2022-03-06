@@ -10,13 +10,21 @@ class Product:
 
     item_price = 50
     offer_num = 3
+    offer_price = 130
 
-    def __init__(self, count) -> None:
-        self.count = count
-
-    def get_price(self):
+    def get_price(self, count):
         """Get the price, including any offers"""
-        price = self.count * self.item_price
+        price = count * self.item_price
+        if self.offer_num:
+            price = self._calculate_offers(count)
+        return price
+
+    def _calculate_offers(self, count):
+        """Calculate the offers"""
+        mod = count / self.offer_num
+        rem = count % self.offer_num
+        return (mod * self.offer_price) + (rem * self.item_price)
+
         
 
 def checkout(skus):
@@ -37,6 +45,7 @@ def _check_for_invalid_item(items):
 
 
 assert checkout("ABACDDD") == 0
+
 
 
 

@@ -1,8 +1,20 @@
+
+class ItemGroup:
+    """Item group"""
+
+    num = 3
+    combination = ["S", "T", "X", "Y", "Z"]
+    price = 5
+
 class Product:
     """A shopping item"""
     item_price = 0
     offers = {}
     freebies = {}
+
+    group_offers = {
+        3: ()
+    }
 
 
     def calculate_price(self, count, freebie_count):
@@ -170,3 +182,4 @@ PRODUCT_MAP = {
     "Y": ProductY(),
     "Z": ProductZ(),
 }
+

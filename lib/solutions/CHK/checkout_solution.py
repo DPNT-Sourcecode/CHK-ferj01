@@ -20,11 +20,14 @@ class Product:
     def _calculate_offers(self, count):
         """Calculate the offers"""
         offer_nums = list(self.offers.keys())
-        sorted(offer_nums, key=int, reverse=True)
+        offer_nums = sorted(offer_nums, key=int, reverse=True)
 
         remaining = count
         total = 0
         for offer_num in offer_nums:
+            if remaining < offer_num:
+                continue
+
             in_offer = int(remaining / offer_num)
             remaining = count % offer_num
             total += (in_offer * self.offers[offer_num])
@@ -83,10 +86,10 @@ def _check_for_invalid_item(items):
             raise InvalidItem()
 
 
-assert checkout("AAA") == 130
 
 assert checkout("A") == 50
 assert checkout("AA") == 100
+assert checkout("AAA") == 130
 assert checkout("AAAA") == 180
 assert checkout("AAAAA") == 200
 assert checkout("AAAAAA") == 250
@@ -108,6 +111,7 @@ assert checkout("DDD") == 45
 assert checkout("DDDD") == 60
 
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
+
 
 
 

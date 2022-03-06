@@ -68,6 +68,9 @@ def _get_groups(items):
     return len(within_deal), products_in_deal
 
 
+assert checkout("K") == 70
+assert checkout("ABCDEFGHIJKLMNOPQRSTUVW") == 795
+
 assert checkout("SSS") == 45
 assert checkout("TTT") == 45
 assert checkout("XXX") == 45
@@ -138,11 +141,3 @@ assert checkout("VVV") == 130
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
-
-
-
-
-
-
-
-

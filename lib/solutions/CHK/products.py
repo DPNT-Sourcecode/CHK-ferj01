@@ -101,7 +101,7 @@ class ProductJ(Product):
 
 
 class ProductK(Product):
-    item_price = 80
+    item_price = 70
     offers = {2: 150}
 
 
@@ -204,4 +204,3 @@ PRODUCT_MAP = {
     "Y": ProductY(),
     "Z": ProductZ(),
 }
-

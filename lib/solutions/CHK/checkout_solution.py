@@ -78,25 +78,28 @@ def _check_for_invalid_item(items):
 
 
 
-assert checkout("A") == 50
-assert checkout("AA") == 100
-assert checkout("AAA") == 130
-assert checkout("AAAA") == 180
-assert checkout("AAAAAA") == 260
+# assert checkout("A") == 50
+# assert checkout("AA") == 100
+# assert checkout("AAA") == 130
+# assert checkout("AAAA") == 180
+# assert checkout("AAAAAA") == 260
 
-assert checkout("B") == 30
-assert checkout("BB") == 45
-assert checkout("BBB") == 75
-assert checkout("BBBB") == 90
-assert checkout("BBBBB") == 120
+# assert checkout("B") == 30
+# assert checkout("BB") == 45
+# assert checkout("BBB") == 75
+# assert checkout("BBBB") == 90
+# assert checkout("BBBBB") == 120
 
-assert checkout("C") == 20
-assert checkout("CC") == 40
-assert checkout("CCC") == 60
-assert checkout("CCCC") == 80
+# assert checkout("C") == 20
+# assert checkout("CC") == 40
+# assert checkout("CCC") == 60
+# assert checkout("CCCC") == 80
 
-assert checkout("D") == 15
-assert checkout("DD") == 30
-assert checkout("DDD") == 45
-assert checkout("DDDD") == 60
+# assert checkout("D") == 15
+# assert checkout("DD") == 30
+# assert checkout("DDD") == 45
+# assert checkout("DDDD") == 60
+
+# assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
+
 

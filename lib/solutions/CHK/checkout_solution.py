@@ -8,18 +8,19 @@ class InvalidItem(Exception):
 class Product:
     """A shopping item"""
     item_price = 0
-    offer_num = 0
-    offer_price = 0
+    offers = {}
 
     def get_price(self, count):
         """Get the price, including any offers"""
         price = count * self.item_price
-        if self.offer_num:
+        if self.offers:
             price = self._calculate_offers(count)
         return price
 
     def _calculate_offers(self, count):
         """Calculate the offers"""
+        offer_nums = list(self.offers.keys())
+
         in_offer = int(count / self.offer_num)
         out_offer = count % self.offer_num
         return (in_offer * self.offer_price) + (out_offer * self.item_price)
@@ -27,14 +28,12 @@ class Product:
 class ProductA(Product):
     """A"""
     item_price = 50
-    offer_num = 3
-    offer_price = 130
+    offers = {3: 130}
 
 class ProductB(Product):
     """B"""
     item_price = 30
-    offer_num = 2
-    offer_price = 45
+    offers = {2: 45}
 
 class ProductC(Product):
     """C"""
@@ -78,28 +77,29 @@ def _check_for_invalid_item(items):
 
 
 
-# assert checkout("A") == 50
-# assert checkout("AA") == 100
-# assert checkout("AAA") == 130
-# assert checkout("AAAA") == 180
-# assert checkout("AAAAAA") == 260
+assert checkout("A") == 50
+assert checkout("AA") == 100
+assert checkout("AAA") == 130
+assert checkout("AAAA") == 180
+assert checkout("AAAAAA") == 260
 
-# assert checkout("B") == 30
-# assert checkout("BB") == 45
-# assert checkout("BBB") == 75
-# assert checkout("BBBB") == 90
-# assert checkout("BBBBB") == 120
+assert checkout("B") == 30
+assert checkout("BB") == 45
+assert checkout("BBB") == 75
+assert checkout("BBBB") == 90
+assert checkout("BBBBB") == 120
 
-# assert checkout("C") == 20
-# assert checkout("CC") == 40
-# assert checkout("CCC") == 60
-# assert checkout("CCCC") == 80
+assert checkout("C") == 20
+assert checkout("CC") == 40
+assert checkout("CCC") == 60
+assert checkout("CCCC") == 80
 
-# assert checkout("D") == 15
-# assert checkout("DD") == 30
-# assert checkout("DDD") == 45
-# assert checkout("DDDD") == 60
+assert checkout("D") == 15
+assert checkout("DD") == 30
+assert checkout("DDD") == 45
+assert checkout("DDDD") == 60
 
-# assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
+assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
+
 
 

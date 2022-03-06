@@ -17,7 +17,7 @@ class Product:
         price = count * self.item_price
         if self.offers:
             price = self._calculate_offers(count)
-        return price
+        self.total = price
 
     def get_freebies(self, count):
         """Get any freebies on offer"""
@@ -44,7 +44,7 @@ class Product:
             total += (in_offer * self.offers[offer_num])
 
 
-        self.total = total + (remaining * self.item_price)
+        return total + (remaining * self.item_price)
 
 class ProductA(Product):
     """A"""
@@ -83,6 +83,11 @@ def checkout(skus):
     except InvalidItem:
         return -1
 
+    for k, count in items.items():
+        product = PRODUCT_MAP[k]
+        freebies = product.get_freebies(count)
+        print(freebies)
+
     total = 0
     for k, count in items.items():
         product = PRODUCT_MAP[k]
@@ -97,36 +102,29 @@ def _check_for_invalid_item(items):
         if k not in ["A", "B", "C", "D"]:
             raise InvalidItem()
 
+assert checkout("BEE") == 50
 
+# assert checkout("A") == 50
+# assert checkout("AA") == 100
+# assert checkout("AAA") == 130
+# assert checkout("AAAA") == 180
+# assert checkout("AAAAA") == 200
+# assert checkout("AAAAAA") == 250
 
-assert checkout("A") == 50
-assert checkout("AA") == 100
-assert checkout("AAA") == 130
-assert checkout("AAAA") == 180
-assert checkout("AAAAA") == 200
-assert checkout("AAAAAA") == 250
+# assert checkout("B") == 30
+# assert checkout("BB") == 45
+# assert checkout("BBB") == 75
+# assert checkout("BBBB") == 90
+# assert checkout("BBBBB") == 120
 
-assert checkout("B") == 30
-assert checkout("BB") == 45
-assert checkout("BBB") == 75
-assert checkout("BBBB") == 90
-assert checkout("BBBBB") == 120
+# assert checkout("C") == 20
+# assert checkout("CC") == 40
+# assert checkout("CCC") == 60
+# assert checkout("CCCC") == 80
 
-assert checkout("C") == 20
-assert checkout("CC") == 40
-assert checkout("CCC") == 60
-assert checkout("CCCC") == 80
+# assert checkout("D") == 15
+# assert checkout("DD") == 30
+# assert checkout("DDD") == 45
+# assert checkout("DDDD") == 60
 
-assert checkout("D") == 15
-assert checkout("DD") == 30
-assert checkout("DDD") == 45
-assert checkout("DDDD") == 60
-
-assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
-
-
-
-
-
-
-
+# assert checkout("AABBCCDD") == 100 + 45 + 40 + 30

@@ -98,18 +98,27 @@ def checkout(skus):
     except InvalidItem:
         return -1
 
-    total_freebies = []
-    for k, count in items.items():
-        product = PRODUCT_MAP[k]
-        total_freebies.append(product.get_freebies(count))
-    print(total_freebies)
-
+    freebies = _get_freebies(items)
     total = 0
     for k, count in items.items():
         product = PRODUCT_MAP[k]
         total += product.calculate_price(count, freebies.get(k, 0))
 
+    print(total)
     return total
+
+def _get_freebies(items):
+    """Get the freebies"""
+    total_freebies = []
+    for k, count in items.items():
+        product = PRODUCT_MAP[k]
+        total_freebies.append(product.get_freebies(count))
+
+    freebies = {}
+    for free in total_freebies:
+        freebies = dict(Counter(freebies) + Counter(free))
+    print(freebies)
+    return freebies
 
 def _check_for_invalid_item(items):
     """Checking for any invalid items"""
@@ -117,32 +126,33 @@ def _check_for_invalid_item(items):
         if k not in list(PRODUCT_MAP.keys()):
             raise InvalidItem()
 
-assert checkout("BEE") == 40
+assert checkout("BEE") == 80
 
-# assert checkout("A") == 50
-# assert checkout("AA") == 100
-# assert checkout("AAA") == 130
-# assert checkout("AAAA") == 180
-# assert checkout("AAAAA") == 200
-# assert checkout("AAAAAA") == 250
+assert checkout("A") == 50
+assert checkout("AA") == 100
+assert checkout("AAA") == 130
+assert checkout("AAAA") == 180
+assert checkout("AAAAA") == 200
+assert checkout("AAAAAA") == 250
 
-# assert checkout("B") == 30
-# assert checkout("BB") == 45
-# assert checkout("BBB") == 75
-# assert checkout("BBBB") == 90
-# assert checkout("BBBBB") == 120
+assert checkout("B") == 30
+assert checkout("BB") == 45
+assert checkout("BBB") == 75
+assert checkout("BBBB") == 90
+assert checkout("BBBBB") == 120
 
-# assert checkout("C") == 20
-# assert checkout("CC") == 40
-# assert checkout("CCC") == 60
-# assert checkout("CCCC") == 80
+assert checkout("C") == 20
+assert checkout("CC") == 40
+assert checkout("CCC") == 60
+assert checkout("CCCC") == 80
 
-# assert checkout("D") == 15
-# assert checkout("DD") == 30
-# assert checkout("DDD") == 45
-# assert checkout("DDDD") == 60
+assert checkout("D") == 15
+assert checkout("DD") == 30
+assert checkout("DDD") == 45
+assert checkout("DDDD") == 60
 
-# assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
+assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
+
 
 
 

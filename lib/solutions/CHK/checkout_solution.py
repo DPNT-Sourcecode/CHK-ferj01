@@ -51,8 +51,10 @@ class Product:
         for offer_num in offer_nums:
             if remaining < offer_num:
                 continue
+            print(remaining)
 
             in_offer = int(remaining / offer_num)
+            print(in_offer)
             remaining = count % offer_num
             total += (in_offer * self.offers[offer_num])
 
@@ -104,6 +106,7 @@ def checkout(skus):
         product = PRODUCT_MAP[k]
         total += product.calculate_price(count, freebies.get(k, 0))
 
+    print(total)
     return total
 
 def _get_freebies(items):
@@ -124,6 +127,7 @@ def _check_for_invalid_item(items):
         if k not in list(PRODUCT_MAP.keys()):
             raise InvalidItem()
 
+assert checkout("AAAAAAAA") == 330
 
 assert checkout("A") == 50
 assert checkout("AA") == 100
@@ -131,6 +135,9 @@ assert checkout("AAA") == 130
 assert checkout("AAAA") == 180
 assert checkout("AAAAA") == 200
 assert checkout("AAAAAA") == 250
+
+assert checkout("AAAAAAAAA") == 380
+assert checkout("AAAAAEEBAAABB") == 455
 
 assert checkout("B") == 30
 assert checkout("BB") == 45
@@ -156,6 +163,7 @@ assert checkout("EEEE") == 160
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
+
 
 
 

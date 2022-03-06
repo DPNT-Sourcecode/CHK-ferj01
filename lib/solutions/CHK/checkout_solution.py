@@ -1,7 +1,7 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
 from collections import Counter
-import lib.solutions.CHK.products
+from .products import ProductA
 
 class InvalidItem(Exception):
     """Invalid item"""
@@ -92,6 +92,7 @@ assert checkout("FFFFFF") == 40
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
+
 
 
 

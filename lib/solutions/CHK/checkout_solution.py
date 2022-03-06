@@ -32,13 +32,11 @@ def _get_freebies(items):
         product = PRODUCT_MAP[k]
         total_freebies.append(product.get_freebies(count))
 
-    freebies = {}
+    groups_count, products_in_deal = _get_groups(items)
+
+    freebies = dict(Counter(products_in_deal))
     for free in total_freebies:
         freebies = dict(Counter(freebies) + Counter(free))
-
-    groups_count, products_in_deal = _get_groups(items)
-    for product in products_in_deal:
-        pass
 
     return freebies, groups_count
 
@@ -67,7 +65,12 @@ def _get_groups(items):
     return len(within_deal), products_in_deal
 
 
-assert checkout("STXYZ") == 50
+assert checkout("STXYZ") == 45 + 17 + 20
+assert checkout("SSS") == 45
+assert checkout("TTT") == 45
+assert checkout("XXX") == 45
+assert checkout("YYY") == 45
+assert checkout("ZZZ") == 45
 
 assert checkout("A") == 50
 assert checkout("AA") == 100
@@ -131,6 +134,7 @@ assert checkout("VVV") == 130
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
+
 
 
 

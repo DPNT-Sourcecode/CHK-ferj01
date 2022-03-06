@@ -1,6 +1,8 @@
 # noinspection PyUnusedLocal
 from collections import Counter
+
 from solutions.CHK.products import PRODUCT_MAP
+
 
 class InvalidItem(Exception):
     """Invalid item"""
@@ -21,6 +23,7 @@ def checkout(skus):
 
     return total
 
+
 def _get_freebies(items):
     """Get the freebies"""
     total_freebies = []
@@ -33,11 +36,23 @@ def _get_freebies(items):
         freebies = dict(Counter(freebies) + Counter(free))
     return freebies
 
+
 def _check_for_invalid_item(items):
     """Checking for any invalid items"""
     for k in items.keys():
         if k not in list(PRODUCT_MAP.keys()):
             raise InvalidItem()
+
+
+def _get_groups(items):
+    """Get the item groups"""
+    grouped = []
+    for k, count in items.items():
+        if k in ["S", "T", "X", "Y", "Z"]:
+            grouped.extend(k * count)
+
+    print(grouped)
+
 
 assert checkout("A") == 50
 assert checkout("AA") == 100

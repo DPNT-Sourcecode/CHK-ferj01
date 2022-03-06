@@ -85,6 +85,7 @@ class ProductG(Product):
 
 class ProductH(Product):
     item_price = 10
+    offers = {5: 45, 10: 80}
 
 class ProductI(Product):
     item_price = 35
@@ -111,12 +112,15 @@ class ProductO(Product):
 
 class ProductP(Product):
     item_price = 50
+    offers = {5: 200}
 
 class ProductQ(Product):
     item_price = 30
+    offers = {3: 80}
 
 class ProductR(Product):
     item_price = 50
+    freebies = {3: "Q"}
 
 class ProductS(Product):
     item_price = 30
@@ -126,9 +130,11 @@ class ProductT(Product):
 
 class ProductU(Product):
     item_price = 40
+    offers = {4: 120}
 
 class ProductV(Product):
     item_price = 50
+    offers = {2: 90, 3: 130}
 
 class ProductW(Product):
     item_price = 20
@@ -244,6 +250,14 @@ assert checkout("FFFF") == 30
 assert checkout("FFFFF") == 40
 assert checkout("FFFFFF") == 40
 
+assert checkout("HHHHH") == 45
+assert checkout("HHHHHHHHHH") == 80
+
+assert checkout("KK") == 150
+
+assert checkout("MNNN") == 120
+
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
+

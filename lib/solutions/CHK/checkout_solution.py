@@ -82,12 +82,18 @@ class ProductE(Product):
     item_price = 40
     freebies = {2: "B"}
 
+class ProductF(Product):
+    """F"""
+    item_price = 10
+    freebies = {2: "F"}
+
 PRODUCT_MAP = {
     "A": ProductA(),
     "B": ProductB(),
     "C": ProductC(),
     "D": ProductD(),
     "E": ProductE(),
+    "F": ProductF(),
 }
 
 
@@ -125,6 +131,11 @@ def _check_for_invalid_item(items):
             raise InvalidItem()
 
 
+assert checkout("F") == 10
+assert checkout("FF") == 20
+assert checkout("FFF") == 20
+assert checkout("FFFF") == 30
+
 assert checkout("A") == 50
 assert checkout("AA") == 100
 assert checkout("AAA") == 130
@@ -160,3 +171,4 @@ assert checkout("EEEE") == 160
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
 assert checkout("BEE") == 80
 assert checkout("BBEE") == 80 + 30
+

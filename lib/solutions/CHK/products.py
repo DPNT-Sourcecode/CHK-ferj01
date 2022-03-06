@@ -162,7 +162,7 @@ class ProductW(Product):
 
 
 class ProductX(Product):
-    id = "Z"
+    id = "X"
     item_price = 17
 
 
@@ -204,3 +204,4 @@ PRODUCT_MAP = {
     "Y": ProductY(),
     "Z": ProductZ(),
 }
+

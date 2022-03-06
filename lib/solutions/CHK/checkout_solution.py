@@ -25,13 +25,6 @@ class Product:
         new_price = self._get_price(new_count)
         return min(original_price, new_price)
 
-    def _get_price(self, count):
-        """Get the price"""
-        price = count * self.item_price
-        if self.offers:
-            price = self._calculate_offers(count)
-        return price
-
     def get_freebies(self, count):
         """Get any freebies on offer"""
         free = {}
@@ -40,6 +33,13 @@ class Product:
             free[item] = product_count
 
         return free
+
+    def _get_price(self, count):
+        """Get the price"""
+        price = count * self.item_price
+        if self.offers:
+            price = self._calculate_offers(count)
+        return price
 
     def _calculate_offers(self, count):
         """Calculate the offers"""
@@ -104,7 +104,6 @@ def checkout(skus):
         product = PRODUCT_MAP[k]
         total += product.calculate_price(count, freebies.get(k, 0))
 
-    print(total)
     return total
 
 def _get_freebies(items):
@@ -117,7 +116,6 @@ def _get_freebies(items):
     freebies = {}
     for free in total_freebies:
         freebies = dict(Counter(freebies) + Counter(free))
-    print(freebies)
     return freebies
 
 def _check_for_invalid_item(items):
@@ -126,7 +124,6 @@ def _check_for_invalid_item(items):
         if k not in list(PRODUCT_MAP.keys()):
             raise InvalidItem()
 
-assert checkout("BEE") == 80
 
 assert checkout("A") == 50
 assert checkout("AA") == 100
@@ -151,7 +148,15 @@ assert checkout("DD") == 30
 assert checkout("DDD") == 45
 assert checkout("DDDD") == 60
 
+assert checkout("E") == 40
+assert checkout("EE") == 80
+assert checkout("EEE") == 120
+assert checkout("EEEE") == 160
+
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
+assert checkout("BEE") == 80
+assert checkout("BBEE") == 80 + 30
+
 
 
 

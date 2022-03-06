@@ -9,6 +9,7 @@ class Product:
     """A shopping item"""
     item_price = 0
     offers = {}
+    freebies = {}
 
     def get_price(self, count):
         """Get the price, including any offers"""
@@ -16,6 +17,11 @@ class Product:
         if self.offers:
             price = self._calculate_offers(count)
         return price
+
+    def get_freebies(self, count):
+        """Get any freebies on offer"""
+        for num, item in self.freebies.items():
+            product_count = int(count / num)
 
     def _calculate_offers(self, count):
         """Calculate the offers"""
@@ -111,6 +117,7 @@ assert checkout("DDD") == 45
 assert checkout("DDDD") == 60
 
 assert checkout("AABBCCDD") == 100 + 45 + 40 + 30
+
 
 
 
